@@ -3,12 +3,9 @@
 
 #include <iostream>
 #include "receive_email.h"
-#include "SocketRM.h"
 
 int main()
 {
-    SocketRM socketRM;
-    socketRM.getHostAddr();
     receive_eamil();
     std::cout << "Hello World!\n";
 }
