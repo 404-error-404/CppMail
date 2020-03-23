@@ -34,6 +34,8 @@ int receive_eamil()
 	}
 	//设置服务器地址  
 	servAddr.sin_family = AF_INET;
+	// 58.251.106.181 qq邮箱smtp服务器
+	// 123.126.97.1 163邮箱smtp服务器
 	servAddr.sin_addr.s_addr = inet_addr("123.126.97.1");
 	servAddr.sin_port = htons((short)25);
 	int nServAddlen = sizeof(servAddr);
