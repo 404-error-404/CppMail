@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include "receive_email.h"
+#include "mfc_socket.h"
 
 int main()
 {
-    receive_eamil();
+    // receive_eamil();
+    mfc_socket();
     std::cout << "Hello World!\n";
 }
 

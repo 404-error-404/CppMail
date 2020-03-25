@@ -148,9 +148,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CppMail.cpp" />
+    <ClCompile Include="mfc_socket.cpp" />
     <ClCompile Include="receive_email.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mfc_socket.h" />
     <ClInclude Include="receive_email.h" />
   </ItemGroup>
   <ItemGroup>
