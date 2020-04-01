@@ -2,7 +2,6 @@
 //
 
 #include <iostream>
-#include "receive_email.h"
 #include "mfc_socket.h"
 
 int main()

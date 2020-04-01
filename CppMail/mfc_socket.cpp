@@ -11,14 +11,15 @@ void initialization();
 // 解析域名到IPv4地址，无法解析则返回-1，解析成功则返回0
 int get_ip_byname(string name, string &ipv4);
 // 发送消息
-int send_messenger(SOCKET& socket_name, string mes);
+int send_messenger(SOCKET& socket_name, string &mes);
 // 接受消息
 int recv_messenger(SOCKET& socket_name);
-string mfc_socket() {
+
+int mfc_socket() {
 
 	string ipv4;
 	if (get_ip_byname("smtp.qq.com", ipv4) != 0) {
-		return "域名解析失败";
+		return -1;
 	}
 
 	// 定义长度变量
@@ -38,8 +39,9 @@ string mfc_socket() {
 										// windows下混用也问题不大（网上查的
 	// 123.126.96.4 smtp.126.com
 	// 58.251.106.181 smtp.qq.com
-	// server_addr.sin_addr.S_un.S_addr = inet_pton(AF_INET, "58.251.106.181", );
-	inet_pton(AF_INET, ipv4, &server_addr.sin_addr.S_un.S_addr);
+	char ipaddr[16] = "";
+	strcpy_s(ipaddr, ipv4.c_str());
+	inet_pton(AF_INET, ipaddr, &server_addr.sin_addr.S_un.S_addr);
 	server_addr.sin_port = htons(25);
 	// 创建套接字
 	s_server = socket(AF_INET, SOCK_STREAM, 0);
@@ -314,9 +316,9 @@ int get_ip_byname(string name, string & ipv4) {
 }
 
 // 发送消息
-int send_messenger(SOCKET& socket_name, string mes) {
+int send_messenger(SOCKET& socket_name, string &mes) {
 	char send_buf[500];
-	strcpy(send_buf, mes.c_str);
+	strcpy_s(send_buf, mes.c_str());
 	int send_len = send(socket_name, send_buf, strlen(send_buf), 0);
 	if (send_len < 0) {
 		// cout << "发送失败" << endl;

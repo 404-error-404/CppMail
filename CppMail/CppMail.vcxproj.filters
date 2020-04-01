@@ -18,18 +18,18 @@
     <ClCompile Include="CppMail.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="receive_email.cpp">
+    <ClCompile Include="mfc_socket.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mfc_socket.cpp">
+    <ClCompile Include="smtp_mail.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="receive_email.h">
+    <ClInclude Include="mfc_socket.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="mfc_socket.h">
+    <ClInclude Include="smtp_mail.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

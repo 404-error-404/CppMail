@@ -149,11 +149,11 @@
   <ItemGroup>
     <ClCompile Include="CppMail.cpp" />
     <ClCompile Include="mfc_socket.cpp" />
-    <ClCompile Include="receive_email.cpp" />
+    <ClCompile Include="smtp_mail.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mfc_socket.h" />
-    <ClInclude Include="receive_email.h" />
+    <ClInclude Include="smtp_mail.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="参考文献.txt" />
