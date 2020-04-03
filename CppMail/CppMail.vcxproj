@@ -147,16 +147,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base64.cpp" />
     <ClCompile Include="CppMail.cpp" />
     <ClCompile Include="mfc_socket.cpp" />
     <ClCompile Include="smtp_mail.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base64.h" />
     <ClInclude Include="mfc_socket.h" />
     <ClInclude Include="smtp_mail.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="参考文献.txt" />
+    <Text Include="结果显示.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

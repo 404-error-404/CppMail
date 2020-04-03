@@ -185,7 +185,25 @@ int mfc_socket() {
 	send_len = send(s_server, send_buf, strlen(send_buf), 0);
 	if (send_len < 0) {
 		cout << "·¢ËÍÊ§°Ü" << endl;
-		
+
+	}
+	strcpy_s(send_buf, "²âÊÔ\r\n");
+	send_len = send(s_server, send_buf, strlen(send_buf), 0);
+	if (send_len < 0) {
+		cout << "·¢ËÍÊ§°Ü" << endl;
+
+	}
+	strcpy_s(send_buf, "²âÊÔ\r\n");
+	send_len = send(s_server, send_buf, strlen(send_buf), 0);
+	if (send_len < 0) {
+		cout << "·¢ËÍÊ§°Ü" << endl;
+
+	}
+	strcpy_s(send_buf, "²âÊÔ\r\n");
+	send_len = send(s_server, send_buf, strlen(send_buf), 0);
+	if (send_len < 0) {
+		cout << "·¢ËÍÊ§°Ü" << endl;
+
 	}
 
 	strcpy_s(send_buf, ".\r\n");

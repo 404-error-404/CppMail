@@ -1,0 +1,46 @@
+初始化套接字库成功！
+套接字库版本正确！
+服务器连接成功服务端消息：220 newxmesmtplogicsvrszb5.qq.com XMail Esmtp QQ Mail Server.
+
+请发送信息：服务端消息：250-newxmesmtplogicsvrszb5.qq.com-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：334 VXNlcm5hbWU6
+csvrszb5.qq.com-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：334 UGFzc3dvcmQ6
+csvrszb5.qq.com-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：235 Authentication successful
+om-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：250 OK.
+ntication successful
+om-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：250 OK
+
+ntication successful
+om-100.66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+服务端消息：354 End data with <CR><LF>.<CR><LF>.
+66.14.230-33318513
+250-SIZE 73400320
+250 OK
+
+Hello World!
+
+K:\C++ Project\CppMail\Debug\CppMail.exe (进程 10680)已退出，代码为 0。
+要在调试停止时自动关闭控制台，请启用“工具”->“选项”->“调试”->“调试停止时自动关闭控制台”。
+按任意键关闭此窗口. . .
