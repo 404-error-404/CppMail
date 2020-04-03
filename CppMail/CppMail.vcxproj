@@ -154,7 +154,6 @@
     <ClInclude Include="smtp_mail.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="参考文献.txt" />
     <Text Include="结果显示.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -28,7 +28,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="参考文献.txt" />
     <Text Include="结果显示.txt">
       <Filter>源文件</Filter>
     </Text>
