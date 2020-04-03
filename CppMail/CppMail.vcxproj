@@ -147,14 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="base64.cpp" />
     <ClCompile Include="CppMail.cpp" />
-    <ClCompile Include="mfc_socket.cpp" />
     <ClCompile Include="smtp_mail.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="base64.h" />
-    <ClInclude Include="mfc_socket.h" />
     <ClInclude Include="smtp_mail.h" />
   </ItemGroup>
   <ItemGroup>

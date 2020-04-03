@@ -15,7 +15,7 @@ private:
 
     int send_messenger(SOCKET& socket_name, string mes);        // 发送消息
     int recv_messenger(SOCKET& socket_name);                    // 接受消息
-    int get_ip_byname(string name);                  // 从域名解析到ipv4地址
+    int get_ip_byname(string name);                             // 从域名解析到ipv4地址
     string base64_decode(string str);                           // base64编码
 public:
     smtp_mail();                                                // 构造函数
@@ -23,6 +23,7 @@ public:
     string account = "";                                        // 账号
     string password = "";                                       // 密码
     string site = "";                                           // 服务对应的网址
+    string subject = "";                                        // 主题
     string data = "";                                           // 发送邮件的内容
     string receiver = "";                                       // 接收方
     int port = 25;                                              // 发邮件默认端口

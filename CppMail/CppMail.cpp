@@ -2,19 +2,17 @@
 //
 
 #include <iostream>
-#include "mfc_socket.h"
 #include "smtp_mail.h"
 int main()
 {
-    // receive_eamil();
     smtp_mail mailclient;
     mailclient.account = "1791781644@qq.com";
-    mailclient.password = "vdpoensbauvabbch";
+    mailclient.password = "QQ邮箱授权码";
     mailclient.receiver = "1791781644@qq.com";
     mailclient.site = "smtp.qq.com";
+    mailclient.subject = "封装测试";
     mailclient.data = "封装测试";
-    mailclient.send_mail();
-    mfc_socket();
+    cout << mailclient.send_mail();
 
     std::cout << "Hello World!\n";
     return 0;

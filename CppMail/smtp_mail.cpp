@@ -7,28 +7,35 @@ using namespace std;
 
 smtp_mail::smtp_mail() {
 	this->smtp_result = {
+		{0, "邮件发送成功"},
 		{-1, "域名解析到IPv4地址错误，请核对域名或者检查网络连接"},
 		{-2, "数据发送出错"},
 		{-3, "数据接收出错"},
-		{-4, "服务器连接失败，请核对端口号或者检查网络连接"}
+		{-4, "服务器连接失败，请核对端口号或者检查网络连接"},
+		{-5, "账号或密码错误，请核对"},
+		{-6, "收信人格式错误"},
+		{-7, "邮件发送失败，请检查邮件正文"},
+		{-8, "断开连接时出现错误但邮件发送成功"}
 	};
 	//初始化套接字库
 	WORD w_req = MAKEWORD(2, 2);//版本号
 	WSADATA wsadata;
 	WSAStartup(w_req, &wsadata);		// 初始化套接字，返回int，返回值为0则初始化失败，为其他值则成功，但这里不做检测
 	//检测版本号，但这里不做检测
-	/*if (LOBYTE(wsadata.wVersion) != 2 || HIBYTE(wsadata.wHighVersion) != 2) {
-		cout << "套接字库版本号不符！" << endl;
+	if (LOBYTE(wsadata.wVersion) != 2 || HIBYTE(wsadata.wHighVersion) != 2) {
+		// cout << "套接字库版本号不符！" << endl;
 		WSACleanup();
 	}
 	else {
-		cout << "套接字库版本正确！" << endl;
-	}*/
+		// cout << "套接字库版本正确！" << endl;
+	}
 
 	// 填充状态信息
 	server_addr.sin_family = AF_INET;	// 这里AF_INET 表示ADDRESS FAMILY 地址族
 										// PF_INET 表示PROTOCOL FAMILY 协议族
 										// windows下混用也问题不大（网上查的
+	// 创建套接字
+	this->smtp_server = socket(AF_INET, SOCK_STREAM, 0);
 }
 
 smtp_mail::~smtp_mail() {
@@ -108,9 +115,10 @@ int smtp_mail::send_messenger(SOCKET& socket_name, string mes) {
 
 // 接受消息
 int smtp_mail::recv_messenger(SOCKET& socket_name) {
-	char recv_buf[500];		// 用于存放接受的消息
-	int recv_len = recv(socket_name, recv_buf, 500, 0);
-	if (recv_len < 0 || &recv_buf[recv_len - 8] != "250 OK\r\n") {
+	char recv_buf[500] = "";		// 用于存放接受的消息
+	int recv_len = recv(socket_name, recv_buf, 1000, 0);
+	// 第一个字符为2或3则正确，其他主要靠"250 OK\r\n"判断
+	if (recv_buf[0] != '2' && recv_buf[0] != '3' && (recv_len < 0 || &recv_buf[recv_len - 8] != "250 OK\r\n")) {
 		// cout << "接受数据失败" << endl;
 		return -3;
 	}
@@ -200,7 +208,7 @@ int smtp_mail::send_mail() {
 
 
 	// 开始连接服务器
-	if (connect(smtp_server, (SOCKADDR*)&server_addr, sizeof(SOCKADDR)) == SOCKET_ERROR) {
+	if (connect(this->smtp_server, (SOCKADDR*)&server_addr, sizeof(SOCKADDR)) == SOCKET_ERROR) {
 		// cout << "服务器连接失败" << endl;
 		WSACleanup();
 		return -4;
@@ -209,37 +217,115 @@ int smtp_mail::send_mail() {
 	if (result != 0) {
 		return result;
 	}
+
 	// 准备
 	result = this->send_messenger(this->smtp_server, "helo smtp_client" + end_with);
 	if (result != 0) {
-		return result;
+		return result;		// 数据发送出错
 	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -4;			// 数据接收出错
+	}
+
 	// 请求登录
 	result = this->send_messenger(this->smtp_server, "auth login" + end_with);
 	if (result != 0) {
-		return result;
+		return result;		// 数据发送出错
 	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -4;			// 数据接收出错
+	}
+
 	// 输入账号
 	result = this->send_messenger(this->smtp_server, this->base64_decode(this->account) + end_with);
 	if (result != 0) {
-		return result;
+		return result;		// 数据发送出错
 	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -4;			// 数据接收出错
+	}
+
 	// 输入密码
 	result = this->send_messenger(this->smtp_server, this->base64_decode(this->password) + end_with);
 	if (result != 0) {
-		return result;
+		return result;		// 数据发送出错
 	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -5;			// 账号或密码错误，请核对
+	}
+
 	// 发信人
 	result = this->send_messenger(this->smtp_server, "mail from: <" + this->account + ">" + end_with);
 	if (result != 0) {
-		return result;
+		return result;		// 数据发送出错
 	}
-	// 收信人
-	// 发信人
-	result = this->send_messenger(this->smtp_server, "mail to: <" + this->receiver + ">" + end_with);
-
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
 	if (result != 0) {
-		return result;
+		return -5;			// 账号或密码错误，请核对
+	}
+
+	// 收信人
+	result = this->send_messenger(this->smtp_server, "rcpt to: <" + this->receiver + ">" + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -6;			// 收信人格式错误
+	}
+
+	// 请求发送数据
+	result = this->send_messenger(this->smtp_server, "data" + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// subject
+	result = this->send_messenger(this->smtp_server, "subject: " + this->subject + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// from
+	result = this->send_messenger(this->smtp_server, "from: " + this->account + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// to
+	result = this->send_messenger(this->smtp_server, "to: " + this->receiver + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// 信息正文
+	result = this->send_messenger(this->smtp_server, this->data + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// 结束发送
+	result = this->send_messenger(this->smtp_server, "." + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -7;			// 邮件发送失败，请检查邮件正文
+	}
+
+	// 请求退出
+	result = this->send_messenger(this->smtp_server, "quit" + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+	result = this->recv_messenger(this->smtp_server);		// 接受消息
+	if (result != 0) {
+		return -8;			// 断开连接时出现错误但邮件发送成功
 	}
 
 	return 0;
