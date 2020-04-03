@@ -1,1 +1,13 @@
 RFC821 简单邮件传输协议 https://cloud.tencent.com/developer/article/1165007
+从零开始邮件服务器搭建 https://www.jianshu.com/p/610d9bf0ae8b
+Java实现SMTP邮件服务器 https://blog.csdn.net/qq_22260641/article/details/75285420
+Spring-boot搭建邮件服务 https://juejin.im/post/5d79af986fb9a06b1c745908
+再谈用java实现Smtp发送邮件之Socket编程 https://blog.csdn.net/icodeyou/article/details/40324451?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+C++实现含附件的邮件发送功能 https://www.jb51.net/article/140979.htm
+C++发邮件简单实例详解 https://www.jb51.net/article/140977.htm
+使用SMTP 和POP3 协议实现收发邮件（C/C++） https://blog.csdn.net/yuzhenxiong0823/article/details/7713059
+windows下编写dll https://www.cnblogs.com/weiyinfu/p/11235273.html#15
+Walkthrough: Create and use your own Dynamic Link Library (C++) https://docs.microsoft.com/zh-cn/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=vs-2019
+C#实战023:解决添加xxx.dll的引用时报错，请确保xxx是有效的程序集或者COM组件 https://blog.csdn.net/kevinfan2011/article/details/84586587
+C++ 建立邮件客户端之收邮件(利用POP3)(一) https://blog.csdn.net/wsy526659583/article/details/17629439
+C++ 建立邮件客户端之收邮件(利用POP3)(二) https://blog.csdn.net/wsy526659583/article/details/17630027
