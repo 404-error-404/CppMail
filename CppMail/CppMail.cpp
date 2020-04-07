@@ -12,6 +12,7 @@ int main()
     mailclient.site = "smtp.qq.com";
     mailclient.subject = "封装测试";
     mailclient.data = "封装测试";
+    mailclient.port = 25;
     cout << mailclient.send_mail();
 
     std::cout << "Hello World!\n";

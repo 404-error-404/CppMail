@@ -10,3 +10,4 @@ Walkthrough: Create and use your own Dynamic Link Library (C++) https://docs.mic
 C#实战023:解决添加xxx.dll的引用时报错，请确保xxx是有效的程序集或者COM组件 https://blog.csdn.net/kevinfan2011/article/details/84586587
 C++ 建立邮件客户端之收邮件(利用POP3)(一) https://blog.csdn.net/wsy526659583/article/details/17629439
 C++ 建立邮件客户端之收邮件(利用POP3)(二) https://blog.csdn.net/wsy526659583/article/details/17630027
+请检查 PInvoke 签名的调用约定和参数与非托管的目标签名是否匹配 https://blog.csdn.net/xfz0330/article/details/51477769
