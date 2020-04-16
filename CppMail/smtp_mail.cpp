@@ -6,6 +6,7 @@
 using namespace std;
 
 smtp_mail::smtp_mail() {
+	// 返回结果说明
 	this->smtp_result = {
 		{0, "邮件发送成功"},
 		{-1, "域名解析到IPv4地址错误，请核对域名或者检查网络连接"},

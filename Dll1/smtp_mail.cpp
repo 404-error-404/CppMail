@@ -286,19 +286,25 @@ int smtp_mail::send_mail() {
 	}
 
 	// subject
-	result = this->send_messenger(this->smtp_server, "subject: " + this->subject + end_with);
+	result = this->send_messenger(this->smtp_server, "Subject: " + this->subject + end_with);
 	if (result != 0) {
 		return result;		// 数据发送出错
 	}
 
 	// from
-	result = this->send_messenger(this->smtp_server, "from: " + this->account + end_with);
+	result = this->send_messenger(this->smtp_server, "From: " + this->account + end_with);
 	if (result != 0) {
 		return result;		// 数据发送出错
 	}
 
 	// to
-	result = this->send_messenger(this->smtp_server, "to: " + this->receiver + end_with);
+	result = this->send_messenger(this->smtp_server, "To: " + this->receiver + end_with);
+	if (result != 0) {
+		return result;		// 数据发送出错
+	}
+
+	// 发一个空行
+	result = this->send_messenger(this->smtp_server, end_with);
 	if (result != 0) {
 		return result;		// 数据发送出错
 	}

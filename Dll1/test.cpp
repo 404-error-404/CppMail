@@ -54,7 +54,7 @@ int send_mail(LPSTR account, LPSTR password, LPSTR site, LPSTR receiver, LPSTR s
 // 但也有个问题，这个方法在传输中文的时候会导致中文部分长度减半，比如 “测试”，接受到的只有 “测”；“这是测试”→“这是”；“这是as测试”→“这是as”
 // 暂时还不知道为啥，但是没时间去查了，猜测是中文字符和英文字符的占位问题
 /*
-int send_mail(LPSTR account[][2], LPSTR site, LPSTR mail[][3], int port) {
+int send_mail2(LPSTR account[][2], LPSTR site, LPSTR mail[][3], int port) {
 
     smtp_mail mailclient;
     mailclient.account = (*account)[0];
