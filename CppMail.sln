@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "Windows
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7ADCABB3-B403-4C08-B3B5-8E36DCAEA2C2}"
 	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
 		参考文献.txt = 参考文献.txt
 	EndProjectSection
 EndProject
